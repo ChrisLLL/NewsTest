@@ -1,0 +1,25 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@id/main_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/main_background"
+    tools:context="com.example.newstest.activity.MainActivity" >
+
+    <com.example.newstest.view.MyTitleBar
+        android:id="@id/titlebar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true" >
+    </com.example.newstest.view.MyTitleBar>
+
+    <com.example.newstest.view.MyListView
+        android:id="@id/myListView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/titlebar_layout" >
+    </com.example.newstest.view.MyListView>
+
+    <include layout="@layout/arcmenu_rigth_bottom" />
+
+</RelativeLayout>

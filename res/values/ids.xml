@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item name="main_layout" type="id"/>
+    <item name="titlebar_layout" type="id"/>
+    <item name="titlebar_title" type="id"/>
+    <item name="titlebar_refresh" type="id"/>
+    <item name="categorybar_layout" type="id"/>
+    <item name="category_arrow_right" type="id"/>
+    <item name="categoty_scrollview" type="id"/>
+    <item name="category_layout" type="id"/>
+    <item name="myListView" type="id"/>
+    <item name="myArcMenu" type="id"/>
+    <item name="listview_bottom_layout" type="id"/>
+    <item name="btn_back" type="id"/>
+    <item name="btn_go" type="id"/>
+    <item name="btn_personal" type="id"/>
+
+</resources>
