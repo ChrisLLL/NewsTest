@@ -10,10 +10,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.util.Log;
 import android.view.View;
-import android.widget.AbsListView.OnScrollListener;
-import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Toast;
@@ -32,7 +29,17 @@ import com.example.newstest.view.MyListView.MyListViewCallBack;
 
 public class MainActivity extends Activity {
 
-	private ArcMenu myArcMenu;
+	private static MainActivity mainActivity = null;
+
+	public MainActivity() {
+		mainActivity = this;
+	}
+
+	public static MainActivity getMainActivity() {
+		return mainActivity;
+	}
+
+	public ArcMenu myArcMenu;
 	private MyListView myListView;
 	private List<News> news;
 	private NewsAdapter newsAdapter;
@@ -46,7 +53,7 @@ public class MainActivity extends Activity {
 	private static final int INIT_NEWS = 1;
 	private static final int LOAD_MORE_NEWS = 2;
 	private static final String THREAD_ERROR = "多半是程序有问题";
-	private static final String PROGRAM_ERROR = "多半是没网";
+	private static final String INTERNET_ERROR = "多半是没网";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -183,23 +190,31 @@ public class MainActivity extends Activity {
 			}
 
 		});
-		this.myListView.setOnScrollListener(new OnScrollListener() {
+		// this.myListView.setOnScrollListener(new OnScrollListener() {
+		//
+		// @Override
+		// public void onScrollStateChanged(AbsListView view, int scrollState) {
+		//
+		// }
+		//
+		// @Override
+		// public void onScroll(AbsListView view, int firstVisibleItem,
+		// int visibleItemCount, int totalItemCount) {
+		//
+		// if (myArcMenu.isOpen()) {
+		// myArcMenu.toggleMenu(600);
+		// }
+		//
+		// }
+		// });
+		this.myArcMenu
+				.setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
-			@Override
-			public void onScrollStateChanged(AbsListView view, int scrollState) {
-
-			}
-
-			@Override
-			public void onScroll(AbsListView view, int firstVisibleItem,
-					int visibleItemCount, int totalItemCount) {
-
-				if (myArcMenu.isOpen()) {
-					myArcMenu.toggleMenu(600);
-				}
-
-			}
-		});
+					@Override
+					public void onClick(View view, int pos) {
+						showTip("你点击了第" + pos + "个");
+					}
+				});
 
 	}
 
@@ -229,7 +244,7 @@ public class MainActivity extends Activity {
 			int flag = msg.what;
 			switch (flag) {
 			case 0:
-				((MainActivity) mActivity.get()).showTip(PROGRAM_ERROR);
+				((MainActivity) mActivity.get()).showTip(INTERNET_ERROR);
 				break;
 			case INIT_NEWS:
 				((MainActivity) mActivity.get()).loadListView();

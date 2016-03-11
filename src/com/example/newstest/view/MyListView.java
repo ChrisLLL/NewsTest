@@ -2,6 +2,7 @@ package com.example.newstest.view;
 
 import com.example.newstest.Config;
 import com.example.newstest.R;
+import com.example.newstest.activity.MainActivity;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -165,6 +166,11 @@ public class MyListView extends ListView {
 		public void onScroll(AbsListView view, int firstVisibleItem,
 				int visibleItemCount, int totalItemCount) {
 			mFirstVisibleItem = firstVisibleItem;
+
+			if (((MainActivity) getContext()).myArcMenu.isOpen()) {
+				((MainActivity) getContext()).myArcMenu.toggleMenu(600);
+			}
+			;
 
 			if (footerView != null) {
 				// 判断可视Item是否能在当前页面完全显示
